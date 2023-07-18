@@ -1,0 +1,14 @@
+first made index.html to test through console. npm install and test was returning passed all the time and since we have been taught not to use
+external libraries while working on the course I wasnt sure what to do about it but wanted to proceed with the task.
+
+started with code to handle type
+
+function assertEquals(expect, actual) {
+    if(typeof expect !== typeof actual){
+        console.log(`Expected type ${typeof expect} but found type ${typeof actual}`);
+    }
+}
+assertEquals(1, '1');
+
+
+
