@@ -1,5 +1,6 @@
+
 function assertEquals(expect, actual) {
-   try { if(typeof expect !== typeof actual){
+  if(typeof expect !== typeof actual){
         throw new Error(`Expected type ${typeof expect} but found type ${typeof actual}`);
     }
     else{
@@ -15,30 +16,47 @@ function assertEquals(expect, actual) {
               }       
                 });
             }
+            else{
 if(expect !== actual){
     throw new Error(`Expected ${expect} but found ${actual}`);
 }
+            }
     }
 }
-   }
-    catch (error) {
-        // Handle the error
-        console.error("error:", error.message);
-      }
+   
+  
 }
-// test for detecting unequal type 
-// assertEquals(1, '1');
 
-// test for detecting unequal strings or numbers
-// assertEquals(1,2);
-// assertEquals('USA', 'UK');
 
-// test for array length difference
-// assertEquals([1,1,1],[1,1,1,1,1])
+function testAssertEqual(expectedError, var1, var2){
+try {
+    assertEquals(var1, var2);
+    if(expectedError === 'no error'){
+        console.log('Assert Equal Works');
+    }
+    else{
+        console.log('unexpected result no error');
+    }
+} 
 
-// test for arrays with different values
-// assertEquals(['a','d'], ['a','b']);
+catch (error) {
+ if( error.message === expectedError) {
+console.log('Assert Equal Works');
 
+ }  
+ else{
+    console.log(`Unexpected results ${error.message}`);
+ }
+}
+
+};
+testAssertEqual('no error', 'abc', 'abc');
+testAssertEqual('Expected abcef but found abc', 'abcef', 'abc');
+testAssertEqual('no error', 1, 1);
+testAssertEqual('Expected 1 but found 2', 1, 2);
+testAssertEqual('no error', ['a', 'b', 'c'], ['a', 'b', 'c']);
+testAssertEqual('Expected array length 2 but found 3', ['a', 'b'], ['a', 'b', 'c']);
+testAssertEqual('Expected b but found d', ['a', 'b'], ['a', 'd']);
 
 
 
